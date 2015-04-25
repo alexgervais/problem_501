@@ -16,6 +16,21 @@ Find f(10^12).
 
 https://projecteuler.net/problem=501
 
+## Usage
+
+Build a runnable jar
+
+```bash
+cd problem_501
+gradle jar
+```
+
+Run jar, providing the 'n' variable
+
+```bash
+java -jar problem_501.jar 24
+```
+
 ## License
 
 MIT
