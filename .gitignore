@@ -1,0 +1,5 @@
+.gradle/
+build/
+.idea
+.yo-rc.json
+*.iml
