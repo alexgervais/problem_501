@@ -1,6 +1,7 @@
 package self;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Divisor {
@@ -12,22 +13,48 @@ public class Divisor {
         this.divisorCount = divisorCount;
     }
 
-    public List<Long> findDivisorsOf(final long n) {
+    public Collection<Long> findDivisorsOf(final long n) {
 
-        final List<Long> divisors = new ArrayList<>();
+        final Collection<Long> divisors = new ArrayList<>();
 
-        if (n > 1) {
-            divisors.add(1L);
-            divisors.add(n);
-        }
+        divisors.add(1L);
+        divisors.add(n);
 
-        for (long i = 2; i <= n / 2; i++) {
-            if (n % i == 0) {
-                divisors.add(i);
-            }
+        if (n % 2 == 0) {
+            findEvenDivisors(n, divisors);
+        } else {
+            findOddDivisors(n, divisors);
         }
 
         return divisors;
+    }
+
+    public void findOddDivisors(final long n, final Collection<Long> divisors) {
+
+        int foundDivisors = 2;
+        for (long i = 3; i <= n / 3; i++) {
+            if (n % i == 0) {
+                divisors.add(i);
+
+                if (++foundDivisors > divisorCount) {
+                    break;
+                }
+            }
+        }
+    }
+
+    public void findEvenDivisors(final long n, final Collection<Long> divisors) {
+
+        int foundDivisors = 2;
+        for (long i = 2; i <= n / 2; i++) {
+            if (n % i == 0) {
+                divisors.add(i);
+
+                if (++foundDivisors > divisorCount) {
+                    break;
+                }
+            }
+        }
     }
 
     public List<Long> numbersNotExceedingNumberOfDivisors(final long n) {
