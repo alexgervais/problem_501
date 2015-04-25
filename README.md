@@ -1,7 +1,6 @@
-# Problem_501
+# problem_501
 
-Problem 501 - Eight Divisors
-
+## Eight Divisors
 
 The eight divisors of 24 are 1, 2, 3, 4, 6, 8, 12 and 24.
 

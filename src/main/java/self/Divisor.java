@@ -16,7 +16,12 @@ public class Divisor {
 
         final List<Long> divisors = new ArrayList<>();
 
-        for (long i = 1; i <= n; i++) {
+        if (n > 1) {
+            divisors.add(1L);
+            divisors.add(n);
+        }
+
+        for (long i = 2; i <= n / 2; i++) {
             if (n % i == 0) {
                 divisors.add(i);
             }
