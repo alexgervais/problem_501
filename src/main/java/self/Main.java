@@ -11,12 +11,11 @@ public class Main {
         final long start = System.currentTimeMillis();
 
         final Divisor divisor = new Divisor(8);
-        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(n);
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(n);
 
         final long end = System.currentTimeMillis();
 
-        System.out.println(result);
-        System.out.println(String.format("Result: [%s]", result.size()));
+        System.out.println(String.format("Result: [%s]", result));
         System.out.println(String.format("Took: [%s]ms", end - start));
     }
 

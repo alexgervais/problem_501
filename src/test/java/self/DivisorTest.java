@@ -105,34 +105,36 @@ public class DivisorTest {
     }
 
     @Test
-    public void numbersNotExceedingNumberOfDivisors_10000() throws Exception {
+    public void numbersCountNotExceedingNumberOfDivisors_10000() throws Exception {
 
-        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(10000L);
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(10000L);
 
-        assertThat(result.size(), is(equalTo(2114)));
+        assertThat(result, is(equalTo(2114L)));
     }
 
     @Test
-    public void numbersNotExceedingNumberOfDivisors_50000() throws Exception {
+    public void numbersCountNotExceedingNumberOfDivisors_50000() throws Exception {
 
-        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(50000L);
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(50000L);
 
-        assertThat(result.size(), is(equalTo(10957)));
+        assertThat(result, is(equalTo(10957L)));
     }
+
+    @Test
+    public void numbersCountNotExceedingNumberOfDivisors_100000() throws Exception {
+
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(100000L);
+
+        assertThat(result, is(equalTo(22181L)));
+    }
+
 /*
     @Test
-    public void numbersNotExceedingNumberOfDivisors_100000() throws Exception {
+    public void numbersCountNotExceedingNumberOfDivisors_1000000() throws Exception {
 
-        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(100000);
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(1000000L);
 
-        assertThat(result.size(), is(equalTo(22181)));
+        assertThat(result, is(equalTo(224427L)));
     }
-
-    @Test
-    public void numbersNotExceedingNumberOfDivisors_1000000() throws Exception {
-
-        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(1000000);
-
-        assertThat(result.size(), is(equalTo(224427)));
-    }*/
+*/
 }
