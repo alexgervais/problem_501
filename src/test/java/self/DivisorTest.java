@@ -62,7 +62,7 @@ public class DivisorTest {
     @Test
     public void numbersNotExceedingNumberOfDivisors_10() throws Exception {
 
-        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(10);
+        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(10L);
 
         assertThat(result.size(), is(equalTo(0)));
     }
@@ -70,7 +70,7 @@ public class DivisorTest {
     @Test
     public void numbersNotExceedingNumberOfDivisors_24() throws Exception {
 
-        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(24);
+        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(24L);
 
         assertThat(result.size(), is(equalTo(1)));
         assertThat(result, hasItems(24L));
@@ -79,7 +79,7 @@ public class DivisorTest {
     @Test
     public void numbersNotExceedingNumberOfDivisors_100() throws Exception {
 
-        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(100);
+        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(100L);
 
         assertThat(result.size(), is(equalTo(10)));
         assertThat(result, hasItems(24L, 30L, 40L, 42L, 54L, 56L, 66L, 70L, 78L, 88L));
@@ -88,7 +88,7 @@ public class DivisorTest {
     @Test
     public void numbersNotExceedingNumberOfDivisors_1000() throws Exception {
 
-        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(1000);
+        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(1000L);
 
         assertThat(result.size(), is(equalTo(180)));
         assertThat(result, hasItems(24L, 30L, 40L, 42L, 54L, 56L, 66L, 70L, 78L, 88L, 102L, 104L, 105L,
@@ -107,7 +107,7 @@ public class DivisorTest {
     @Test
     public void numbersNotExceedingNumberOfDivisors_10000() throws Exception {
 
-        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(10000);
+        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(10000L);
 
         assertThat(result.size(), is(equalTo(2114)));
     }
@@ -115,7 +115,7 @@ public class DivisorTest {
     @Test
     public void numbersNotExceedingNumberOfDivisors_50000() throws Exception {
 
-        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(50000);
+        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(50000L);
 
         assertThat(result.size(), is(equalTo(10957)));
     }

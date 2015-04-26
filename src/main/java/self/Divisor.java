@@ -2,6 +2,8 @@ package self;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 public class Divisor {
 
@@ -60,16 +62,12 @@ public class Divisor {
         }
     }
 
-    public Collection<Long> numbersNotExceedingNumberOfDivisors(final long baseNumber) {
+    public Collection<Long> numbersNotExceedingNumberOfDivisors(final Long baseNumber) {
 
-        final Collection<Long> numbers = new ArrayList<>();
-
-        for (long i = 1; i <= baseNumber; i++) {
-            if (findDivisorsOf(i).size() == divisorCount) {
-                numbers.add(i);
-            }
-        }
-
-        return numbers;
+        return LongStream.range(1, baseNumber + 1)
+            .boxed()
+            .parallel()
+            .filter(n -> findDivisorsOf(n).size() == divisorCount)
+            .collect(Collectors.toList());
     }
 }
