@@ -2,7 +2,6 @@ package self;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class Divisor {
 
@@ -21,47 +20,51 @@ public class Divisor {
         divisors.add(n);
 
         if (n % 2 == 0) {
-            findEvenDivisors(n, divisors);
+            findEvenNumberDivisors(n, divisors);
         } else {
-            findOddDivisors(n, divisors);
+            findOddNumberDivisors(n, divisors);
         }
 
         return divisors;
     }
 
-    public void findOddDivisors(final long n, final Collection<Long> divisors) {
+    private void findOddNumberDivisors(final long n, final Collection<Long> divisors) {
 
         int foundDivisors = 2;
-        for (long i = 3; i <= n / 3; i++) {
+        final long limit = n / 3;
+        long i = 2;
+        while (++i <= limit) {
             if (n % i == 0) {
                 divisors.add(i);
 
                 if (++foundDivisors > divisorCount) {
-                    break;
+                    return;
                 }
             }
         }
     }
 
-    public void findEvenDivisors(final long n, final Collection<Long> divisors) {
+    private void findEvenNumberDivisors(final long n, final Collection<Long> divisors) {
 
         int foundDivisors = 2;
-        for (long i = 2; i <= n / 2; i++) {
+        final long limit = n / 2;
+        long i = 1;
+        while (++i <= limit) {
             if (n % i == 0) {
                 divisors.add(i);
 
                 if (++foundDivisors > divisorCount) {
-                    break;
+                    return;
                 }
             }
         }
     }
 
-    public List<Long> numbersNotExceedingNumberOfDivisors(final long n) {
+    public Collection<Long> numbersNotExceedingNumberOfDivisors(final long baseNumber) {
 
-        final List<Long> numbers = new ArrayList<>();
+        final Collection<Long> numbers = new ArrayList<>();
 
-        for (long i = 1; i <= n; i++) {
+        for (long i = 1; i <= baseNumber; i++) {
             if (findDivisorsOf(i).size() == divisorCount) {
                 numbers.add(i);
             }

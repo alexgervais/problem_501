@@ -1,6 +1,6 @@
 package self;
 
-import java.util.List;
+import java.util.Collection;
 
 public class Main {
 
@@ -11,7 +11,7 @@ public class Main {
         final long start = System.currentTimeMillis();
 
         final Divisor divisor = new Divisor(8);
-        final List<Long> result = divisor.numbersNotExceedingNumberOfDivisors(n);
+        final Collection<Long> result = divisor.numbersNotExceedingNumberOfDivisors(n);
 
         final long end = System.currentTimeMillis();
 
