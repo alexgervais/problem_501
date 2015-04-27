@@ -5,19 +5,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collection;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class DivisorTest {
+public class FactorDivisorTest {
 
-    private Divisor divisor;
+    private FactorDivisor divisor;
     private long start;
 
     @Before
     public void setUp() throws Exception {
 
-        divisor = new Divisor(8);
+        divisor = new FactorDivisor(8);
         start = System.currentTimeMillis();
     }
 
@@ -28,35 +29,25 @@ public class DivisorTest {
     }
 
     @Test
-    public void findDivisorsOf_9() throws Exception {
+    public void findFactors_24() throws Exception {
 
-        final Collection<Long> result = divisor.findDivisorsOf(9);
+        final Map<Long, Integer> result = divisor.findFactors(24L);
 
-        assertThat(result, hasItems(1L, 3L, 9L));
+        assertThat(result.size(), is(equalTo(2)));
+        assertThat(result.get(2L), is(equalTo(3)));
+        assertThat(result.get(3L), is(equalTo(1)));
     }
 
     @Test
-    public void findDivisorsOf_10() throws Exception {
+    public void findFactors_6552() throws Exception {
 
-        final Collection<Long> result = divisor.findDivisorsOf(10);
+        final Map<Long, Integer> result = divisor.findFactors(6552L);
 
-        assertThat(result, hasItems(1L, 2L, 5L, 10L));
-    }
-
-    @Test
-    public void findDivisorsOf_24() throws Exception {
-
-        final Collection<Long> result = divisor.findDivisorsOf(24);
-
-        assertThat(result, hasItems(1L, 2L, 3L, 4L, 6L, 8L, 12L, 24L));
-    }
-
-    @Test
-    public void findDivisorsOf_999() throws Exception {
-
-        final Collection<Long> result = divisor.findDivisorsOf(999);
-
-        assertThat(result, hasItems(1L, 3L, 9L, 27L, 37L, 111L, 333L));
+        assertThat(result.size(), is(equalTo(4)));
+        assertThat(result.get(2L), is(equalTo(3)));
+        assertThat(result.get(3L), is(equalTo(2)));
+        assertThat(result.get(7L), is(equalTo(1)));
+        assertThat(result.get(13L), is(equalTo(1)));
     }
 
     @Test
@@ -102,6 +93,30 @@ public class DivisorTest {
             786L, 790L, 795L, 805L, 806L, 808L, 814L, 822L, 824L, 826L, 830L, 834L, 837L, 854L, 856L, 861L, 872L, 874L,
             875L, 885L, 890L, 894L, 897L, 902L, 903L, 904L, 906L, 915L, 935L, 938L, 942L, 946L, 957L, 962L, 969L, 970L,
             978L, 986L, 987L, 994L, 999L));
+    }
+
+    @Test
+    public void numbersCountNotExceedingNumberOfDivisors_24() throws Exception {
+
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(24L);
+
+        assertThat(result, is(equalTo(1L)));
+    }
+
+    @Test
+    public void numbersCountNotExceedingNumberOfDivisors_100() throws Exception {
+
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(100L);
+
+        assertThat(result, is(equalTo(10L)));
+    }
+
+    @Test
+    public void numbersCountNotExceedingNumberOfDivisors_1000() throws Exception {
+
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(1000L);
+
+        assertThat(result, is(equalTo(180L)));
     }
 
     @Test

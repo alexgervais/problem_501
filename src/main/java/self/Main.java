@@ -1,7 +1,5 @@
 package self;
 
-import java.util.Collection;
-
 public class Main {
 
     public static void main(final String[] args) {
@@ -10,8 +8,8 @@ public class Main {
 
         final long start = System.currentTimeMillis();
 
-        final Divisor divisor = new Divisor(8);
-        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(n);
+        final BruteDivisor bruteDivisor = new BruteDivisor(8);
+        final Long result = bruteDivisor.numbersCountNotExceedingNumberOfDivisors(n);
 
         final long end = System.currentTimeMillis();
 
