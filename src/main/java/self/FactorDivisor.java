@@ -1,5 +1,6 @@
 package self;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -19,7 +20,12 @@ public class FactorDivisor extends Divisor {
 
         final Map<Long, Integer> factorsCountMap = new HashMap<>();
 
-        final long divisorLimit = baseNumber / 2;
+        final long divisorLimit;
+        if (baseNumber % 2 == 0) {
+            divisorLimit = baseNumber / 2;
+        } else {
+            divisorLimit = baseNumber / 3;
+        }
 
         long divisor = 2;
         long remains = baseNumber;
@@ -36,9 +42,8 @@ public class FactorDivisor extends Divisor {
                 incrementMap(factorsCountMap, baseNumber, 1);
                 break;
             } else {
-                divisor += 1;
+                divisor++;
             }
-
         }
 
         calculatedFactors.putIfAbsent(baseNumber, factorsCountMap);
@@ -56,10 +61,10 @@ public class FactorDivisor extends Divisor {
     protected Predicate<Long> filterPredicate() {
 
         return n -> {
-            final Map<Long, Integer> factors = findFactors(n);
+            final Collection<Integer> values = findFactors(n).values();
 
             long total = 1;
-            for (Integer count : factors.values()) {
+            for (Integer count : values) {
                 total *= (count + 1);
                 if (total > divisorCount) {
                     return false;

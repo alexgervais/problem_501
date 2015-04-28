@@ -142,14 +142,4 @@ public class FactorDivisorTest {
 
         assertThat(result, is(equalTo(22181L)));
     }
-
-/*
-    @Test
-    public void numbersCountNotExceedingNumberOfDivisors_1000000() throws Exception {
-
-        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(1000000L);
-
-        assertThat(result, is(equalTo(224427L)));
-    }
-*/
 }

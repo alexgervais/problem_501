@@ -2,14 +2,16 @@ package self;
 
 public class Main {
 
-    public static void main(final String[] args) {
+    public static final int EIGHT_DIVISORS = 8;
+
+    public static void main(final String[] args) throws Exception {
 
         final long n = extractVariableN(args);
+        final Divisor divisor = extractDivisor(args);
 
         final long start = System.currentTimeMillis();
 
-        final BruteDivisor bruteDivisor = new BruteDivisor(8);
-        final Long result = bruteDivisor.numbersCountNotExceedingNumberOfDivisors(n);
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(n);
 
         final long end = System.currentTimeMillis();
 
@@ -32,5 +34,10 @@ public class Main {
         }
 
         return -1;
+    }
+
+    private static Divisor extractDivisor(final String[] args) {
+
+        return new FactorDivisor(EIGHT_DIVISORS);
     }
 }
