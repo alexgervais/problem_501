@@ -24,11 +24,26 @@ cd problem_501
 gradle jar
 ```
 
-Run jar, providing the 'n' variable
+Run jar, providing the 'n' variable and an optional algorithm
 
 ```bash
-java -jar problem_501.jar 24
+java -jar problem_501.jar N [ALGORITHM]
 ```
+
+### Algorithms
+
+`brute` Brute force method, with a few rules of thumb to save cycles.
+
+`factor` Using factors to calculate the number of divisors.
+
+`sqrt` (Default) Similar to the brute force method, but using the square root of the number.
+
+
+## References
+
+http://mathschallenge.net/library/number/number_of_divisors
+
+http://www.wikihow.com/Determine-the-Number-of-Divisors-of-an-Integer
 
 ## License
 

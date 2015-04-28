@@ -21,8 +21,8 @@ public class Main {
 
     private static long extractVariableN(final String[] args) {
 
-        if (args.length != 1) {
-            System.out.println("Expected exactly 1 argument 'n'");
+        if (args.length != 1 && args.length != 2) {
+            System.out.println("Expected 'n [algo]'");
             System.exit(1);
         }
 
@@ -38,6 +38,22 @@ public class Main {
 
     private static Divisor extractDivisor(final String[] args) {
 
-        return new FactorDivisor(EIGHT_DIVISORS);
+        String algo = "";
+        if (args.length == 2) {
+            algo = args[1];
+        }
+
+        switch (algo) {
+            case "brute":
+                System.out.println("Using 'brute' algorithm");
+                return new BruteDivisor(EIGHT_DIVISORS);
+            case "factor":
+                System.out.println("Using 'factor' algorithm");
+                return new FactorDivisor(EIGHT_DIVISORS);
+            case "sqrt":
+            default:
+                System.out.println("Using 'sqrt' algorithm");
+                return new SqrtBruteDivisor(EIGHT_DIVISORS);
+        }
     }
 }
