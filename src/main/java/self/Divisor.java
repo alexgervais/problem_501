@@ -26,6 +26,6 @@ public abstract class Divisor {
             .filter(filterPredicate());
     }
 
-    abstract Predicate<Long> filterPredicate();
+    protected abstract Predicate<Long> filterPredicate();
 
 }

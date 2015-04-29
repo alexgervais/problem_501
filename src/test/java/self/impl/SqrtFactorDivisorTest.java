@@ -1,23 +1,24 @@
-package self;
+package self.impl;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collection;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SqrtBruteDivisorTest {
+public class SqrtFactorDivisorTest {
 
-    private SqrtBruteDivisor divisor;
+    private SqrtFactorDivisor divisor;
     private long start;
 
     @Before
     public void setUp() throws Exception {
 
-        divisor = new SqrtBruteDivisor(8);
+        divisor = new SqrtFactorDivisor(8);
         start = System.currentTimeMillis();
     }
 
@@ -28,43 +29,25 @@ public class SqrtBruteDivisorTest {
     }
 
     @Test
-    public void findDivisorsCountOf_9() throws Exception {
+    public void findFactors_24() throws Exception {
 
-        final int result = divisor.findDivisorsCountOf(9);
+        final Map<Long, Integer> result = divisor.findFactors(24L);
 
-        assertThat(result, is(equalTo(3)));
+        assertThat(result.size(), is(equalTo(2)));
+        assertThat(result.get(2L), is(equalTo(3)));
+        assertThat(result.get(3L), is(equalTo(1)));
     }
 
     @Test
-    public void findDivisorsOf_10() throws Exception {
+    public void findFactors_6552() throws Exception {
 
-        final int result = divisor.findDivisorsCountOf(10);
+        final Map<Long, Integer> result = divisor.findFactors(6552L);
 
-        assertThat(result, is(equalTo(4)));
-    }
-
-    @Test
-    public void findDivisorsCountOf_24() throws Exception {
-
-        final int result = divisor.findDivisorsCountOf(24);
-
-        assertThat(result, is(equalTo(8)));
-    }
-
-    @Test
-    public void findDivisorsCountOf_64() throws Exception {
-
-        final int result = divisor.findDivisorsCountOf(64);
-
-        assertThat(result, is(equalTo(7)));
-    }
-
-    @Test
-    public void findDivisorsCountOf_999() throws Exception {
-
-        final int result = divisor.findDivisorsCountOf(999);
-
-        assertThat(result, is(equalTo(8)));
+        assertThat(result.size(), is(equalTo(4)));
+        assertThat(result.get(2L), is(equalTo(3)));
+        assertThat(result.get(3L), is(equalTo(2)));
+        assertThat(result.get(7L), is(equalTo(1)));
+        assertThat(result.get(13L), is(equalTo(1)));
     }
 
     @Test
@@ -113,6 +96,30 @@ public class SqrtBruteDivisorTest {
     }
 
     @Test
+    public void numbersCountNotExceedingNumberOfDivisors_24() throws Exception {
+
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(24L);
+
+        assertThat(result, is(equalTo(1L)));
+    }
+
+    @Test
+    public void numbersCountNotExceedingNumberOfDivisors_100() throws Exception {
+
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(100L);
+
+        assertThat(result, is(equalTo(10L)));
+    }
+
+    @Test
+    public void numbersCountNotExceedingNumberOfDivisors_1000() throws Exception {
+
+        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(1000L);
+
+        assertThat(result, is(equalTo(180L)));
+    }
+
+    @Test
     public void numbersCountNotExceedingNumberOfDivisors_10000() throws Exception {
 
         final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(10000L);
@@ -135,5 +142,4 @@ public class SqrtBruteDivisorTest {
 
         assertThat(result, is(equalTo(22181L)));
     }
-
 }

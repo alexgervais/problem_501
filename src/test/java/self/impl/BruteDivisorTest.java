@@ -1,24 +1,23 @@
-package self;
+package self.impl;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collection;
-import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class FactorDivisorTest {
+public class BruteDivisorTest {
 
-    private FactorDivisor divisor;
+    private BruteDivisor divisor;
     private long start;
 
     @Before
     public void setUp() throws Exception {
 
-        divisor = new FactorDivisor(8);
+        divisor = new BruteDivisor(8);
         start = System.currentTimeMillis();
     }
 
@@ -29,25 +28,47 @@ public class FactorDivisorTest {
     }
 
     @Test
-    public void findFactors_24() throws Exception {
+    public void findDivisorsOf_9() throws Exception {
 
-        final Map<Long, Integer> result = divisor.findFactors(24L);
+        final Collection<Long> result = divisor.findDivisorsOf(9);
 
-        assertThat(result.size(), is(equalTo(2)));
-        assertThat(result.get(2L), is(equalTo(3)));
-        assertThat(result.get(3L), is(equalTo(1)));
+        assertThat(result, hasItems(1L, 3L, 9L));
     }
 
     @Test
-    public void findFactors_6552() throws Exception {
+    public void findDivisorsOf_10() throws Exception {
 
-        final Map<Long, Integer> result = divisor.findFactors(6552L);
+        final Collection<Long> result = divisor.findDivisorsOf(10);
 
         assertThat(result.size(), is(equalTo(4)));
-        assertThat(result.get(2L), is(equalTo(3)));
-        assertThat(result.get(3L), is(equalTo(2)));
-        assertThat(result.get(7L), is(equalTo(1)));
-        assertThat(result.get(13L), is(equalTo(1)));
+        assertThat(result, hasItems(1L, 2L, 5L, 10L));
+    }
+
+    @Test
+    public void findDivisorsOf_24() throws Exception {
+
+        final Collection<Long> result = divisor.findDivisorsOf(24);
+
+        assertThat(result.size(), is(equalTo(8)));
+        assertThat(result, hasItems(1L, 2L, 3L, 4L, 6L, 8L, 12L, 24L));
+    }
+
+    @Test
+    public void findDivisorsOf_64() throws Exception {
+
+        final Collection<Long> result = divisor.findDivisorsOf(64);
+
+        assertThat(result.size(), is(equalTo(7)));
+        assertThat(result, hasItems(1L, 2L, 4L, 8L, 16L, 32L, 64L));
+    }
+
+    @Test
+    public void findDivisorsOf_999() throws Exception {
+
+        final Collection<Long> result = divisor.findDivisorsOf(999);
+
+        assertThat(result.size(), is(equalTo(8)));
+        assertThat(result, hasItems(1L, 3L, 9L, 27L, 37L, 111L, 333L, 999L));
     }
 
     @Test
@@ -96,30 +117,6 @@ public class FactorDivisorTest {
     }
 
     @Test
-    public void numbersCountNotExceedingNumberOfDivisors_24() throws Exception {
-
-        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(24L);
-
-        assertThat(result, is(equalTo(1L)));
-    }
-
-    @Test
-    public void numbersCountNotExceedingNumberOfDivisors_100() throws Exception {
-
-        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(100L);
-
-        assertThat(result, is(equalTo(10L)));
-    }
-
-    @Test
-    public void numbersCountNotExceedingNumberOfDivisors_1000() throws Exception {
-
-        final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(1000L);
-
-        assertThat(result, is(equalTo(180L)));
-    }
-
-    @Test
     public void numbersCountNotExceedingNumberOfDivisors_10000() throws Exception {
 
         final Long result = divisor.numbersCountNotExceedingNumberOfDivisors(10000L);
@@ -142,4 +139,5 @@ public class FactorDivisorTest {
 
         assertThat(result, is(equalTo(22181L)));
     }
+
 }

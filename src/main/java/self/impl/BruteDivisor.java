@@ -1,4 +1,6 @@
-package self;
+package self.impl;
+
+import self.Divisor;
 
 import java.util.ArrayList;
 import java.util.Collection;

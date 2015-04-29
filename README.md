@@ -36,7 +36,9 @@ java -jar problem_501.jar N [ALGORITHM]
 
 `factor` Using factors to calculate the number of divisors.
 
-`sqrt` (Default) Similar to the brute force method, but using the square root of the number.
+`sqrt_brute` Similar to the brute force method, but using the square root of the number.
+
+`sqrt_factor` (Default) Similar to the factor method, but using the square root of the number.
 
 
 ## References

@@ -1,5 +1,10 @@
 package self;
 
+import self.impl.BruteDivisor;
+import self.impl.FactorDivisor;
+import self.impl.SqrtBruteDivisor;
+import self.impl.SqrtFactorDivisor;
+
 public class Main {
 
     public static final int EIGHT_DIVISORS = 8;
@@ -50,10 +55,13 @@ public class Main {
             case "factor":
                 System.out.println("Using 'factor' algorithm");
                 return new FactorDivisor(EIGHT_DIVISORS);
-            case "sqrt":
-            default:
-                System.out.println("Using 'sqrt' algorithm");
+            case "sqrt_brute":
+                System.out.println("Using 'sqrt_brute' algorithm");
                 return new SqrtBruteDivisor(EIGHT_DIVISORS);
+            case "sqrt_factor":
+            default:
+                System.out.println("Using 'sqrt_factor' algorithm");
+                return new SqrtFactorDivisor(EIGHT_DIVISORS);
         }
     }
 }

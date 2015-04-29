@@ -1,4 +1,4 @@
-package self;
+package self.impl;
 
 import org.junit.After;
 import org.junit.Before;
@@ -9,15 +9,15 @@ import java.util.Collection;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class BruteDivisorTest {
+public class SqrtBruteDivisorTest {
 
-    private BruteDivisor divisor;
+    private SqrtBruteDivisor divisor;
     private long start;
 
     @Before
     public void setUp() throws Exception {
 
-        divisor = new BruteDivisor(8);
+        divisor = new SqrtBruteDivisor(8);
         start = System.currentTimeMillis();
     }
 
@@ -28,47 +28,43 @@ public class BruteDivisorTest {
     }
 
     @Test
-    public void findDivisorsOf_9() throws Exception {
+    public void findDivisorsCountOf_9() throws Exception {
 
-        final Collection<Long> result = divisor.findDivisorsOf(9);
+        final int result = divisor.findDivisorsCountOf(9);
 
-        assertThat(result, hasItems(1L, 3L, 9L));
+        assertThat(result, is(equalTo(3)));
     }
 
     @Test
     public void findDivisorsOf_10() throws Exception {
 
-        final Collection<Long> result = divisor.findDivisorsOf(10);
+        final int result = divisor.findDivisorsCountOf(10);
 
-        assertThat(result.size(), is(equalTo(4)));
-        assertThat(result, hasItems(1L, 2L, 5L, 10L));
+        assertThat(result, is(equalTo(4)));
     }
 
     @Test
-    public void findDivisorsOf_24() throws Exception {
+    public void findDivisorsCountOf_24() throws Exception {
 
-        final Collection<Long> result = divisor.findDivisorsOf(24);
+        final int result = divisor.findDivisorsCountOf(24);
 
-        assertThat(result.size(), is(equalTo(8)));
-        assertThat(result, hasItems(1L, 2L, 3L, 4L, 6L, 8L, 12L, 24L));
+        assertThat(result, is(equalTo(8)));
     }
 
     @Test
-    public void findDivisorsOf_64() throws Exception {
+    public void findDivisorsCountOf_64() throws Exception {
 
-        final Collection<Long> result = divisor.findDivisorsOf(64);
+        final int result = divisor.findDivisorsCountOf(64);
 
-        assertThat(result.size(), is(equalTo(7)));
-        assertThat(result, hasItems(1L, 2L, 4L, 8L, 16L, 32L, 64L));
+        assertThat(result, is(equalTo(7)));
     }
 
     @Test
-    public void findDivisorsOf_999() throws Exception {
+    public void findDivisorsCountOf_999() throws Exception {
 
-        final Collection<Long> result = divisor.findDivisorsOf(999);
+        final int result = divisor.findDivisorsCountOf(999);
 
-        assertThat(result.size(), is(equalTo(8)));
-        assertThat(result, hasItems(1L, 3L, 9L, 27L, 37L, 111L, 333L, 999L));
+        assertThat(result, is(equalTo(8)));
     }
 
     @Test
