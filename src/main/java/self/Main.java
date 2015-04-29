@@ -1,9 +1,6 @@
 package self;
 
-import self.impl.BruteDivisor;
-import self.impl.FactorDivisor;
-import self.impl.SqrtBruteDivisor;
-import self.impl.SqrtFactorDivisor;
+import self.impl.*;
 
 public class Main {
 
@@ -59,9 +56,12 @@ public class Main {
                 System.out.println("Using 'sqrt_brute' algorithm");
                 return new SqrtBruteDivisor(EIGHT_DIVISORS);
             case "sqrt_factor":
-            default:
                 System.out.println("Using 'sqrt_factor' algorithm");
                 return new SqrtFactorDivisor(EIGHT_DIVISORS);
+            case "prime_sqrt_factor":
+            default:
+                System.out.println("Using 'prime_sqrt_factor' algorithm");
+                return new PrimeSqrtFactorDivisor(EIGHT_DIVISORS);
         }
     }
 }

@@ -2,16 +2,36 @@ package self.impl;
 
 import self.Divisor;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
-public class SqrtFactorDivisor extends Divisor {
+public class PrimeSqrtFactorDivisor extends Divisor {
 
     private final int divisorCount;
 
-    public SqrtFactorDivisor(final int divisorCount) {
+    private static final List<Long> PRIMES;
+
+    static {
+        PRIMES = new ArrayList<>();
+        try {
+            final URL resource = PrimeSqrtFactorDivisor.class.getClassLoader().getResource("primes.csv");
+            final Stream<String> stream = Files.lines(Paths.get(resource.toURI()))
+                .map(line -> line.split(","))
+                .flatMap(Arrays::stream);
+
+            stream.forEach(prime -> PRIMES.add(Long.valueOf(prime.trim())));
+            stream.close();
+        } catch (Exception e) {
+            System.out.println("Failed to load primes.csv resource file");
+            e.printStackTrace();
+        }
+    }
+
+    public PrimeSqrtFactorDivisor(final int divisorCount) {
 
         this.divisorCount = divisorCount;
     }
@@ -22,14 +42,10 @@ public class SqrtFactorDivisor extends Divisor {
 
         final long divisorLimit = (long) Math.sqrt(baseNumber);
 
-        long prime = 2;
+        int primeIndex = 0;
+        long prime = PRIMES.get(primeIndex);
         long remains = baseNumber;
-        while (remains % prime == 0) {
-            remains /= prime;
-            incrementFactorMap(factorsCountMap, prime, 1);
-        }
 
-        prime++;
         while (remains > 1) {
             if (remains % prime == 0) {
                 remains /= prime;
@@ -38,7 +54,7 @@ public class SqrtFactorDivisor extends Divisor {
                 incrementFactorMap(factorsCountMap, baseNumber, 1);
                 break;
             } else {
-                prime += 2;
+                prime = PRIMES.get(++primeIndex);
             }
         }
 

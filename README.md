@@ -40,6 +40,8 @@ java -jar problem_501.jar N [ALGORITHM]
 
 `sqrt_factor` (Default) Similar to the factor method, but using the square root of the number.
 
+`prime_sqrt_factor` Similar to the sqrt_factor method, but using pre-calculated prime numbers.
+
 
 ## References
 
