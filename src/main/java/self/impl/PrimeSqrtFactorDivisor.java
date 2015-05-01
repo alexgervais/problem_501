@@ -2,9 +2,9 @@ package self.impl;
 
 import self.Divisor;
 
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -14,19 +14,20 @@ public class PrimeSqrtFactorDivisor extends Divisor {
     private final int divisorCount;
 
     private static final List<Long> PRIMES;
+    private static final String PRIMES_CSV = "primes.csv";
 
     static {
         PRIMES = new ArrayList<>();
-        try {
-            final URL resource = PrimeSqrtFactorDivisor.class.getClassLoader().getResource("primes.csv");
-            final Stream<String> stream = Files.lines(Paths.get(resource.toURI()))
-                .map(line -> line.split(","))
-                .flatMap(Arrays::stream);
+        try (InputStream inputstream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PRIMES_CSV)) {
 
-            stream.forEach(prime -> PRIMES.add(Long.valueOf(prime.trim())));
-            stream.close();
+            final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputstream));
+            final Stream<String> stream = bufferedReader.lines();
+            stream.map(line -> line.split(","))
+                .flatMap(Arrays::stream)
+                .forEach(prime -> PRIMES.add(Long.valueOf(prime.trim())));
+
         } catch (Exception e) {
-            System.out.println("Failed to load primes.csv resource file");
+            System.out.println("Failed to load " + PRIMES_CSV + " resource file");
             e.printStackTrace();
         }
     }
