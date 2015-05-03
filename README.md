@@ -38,9 +38,9 @@ java -jar problem_501.jar N [ALGORITHM]
 
 `sqrt_brute` Similar to the brute force method, but using the square root of the number.
 
-`sqrt_factor` (Default) Similar to the factor method, but using the square root of the number.
+`sqrt_factor` Similar to the factor method, but using the square root of the number.
 
-`prime_sqrt_factor` Similar to the sqrt_factor method, but using pre-calculated prime numbers.
+`prime_sqrt_factor` (Default) Similar to the sqrt_factor method, but using pre-calculated prime numbers.
 
 
 ## References
